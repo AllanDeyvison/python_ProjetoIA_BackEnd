@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from query import query
 
 app = Flask(__name__)
+CORS(app) # Isso habilita o CORS para todas as rotas
 
 @app.route('/query', methods=['POST'])
 def hello():
