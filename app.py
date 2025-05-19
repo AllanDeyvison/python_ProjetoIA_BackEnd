@@ -97,7 +97,7 @@ def route_list_chats():
     return jsonify(list_last_chats(user_id))
 
 
-@app.route('/chats/<chat_id>', methods=['POST'])
+@app.route('/chats/<chat_id>', methods=['GET'])
 def get_chat(chat_id):
     # 1. Obter user_id (agora obrigatório)
     user_id = request.args.get('user_id')
@@ -110,8 +110,9 @@ def get_chat(chat_id):
     if not chat:
         return jsonify({"error": "Conversa não encontrada"}), 404
     
-    # 3. Retornar os dados
+    # 3. Retornar os dados 
     return jsonify(chat), 200
+
 
 @app.route('/chats/<chat_id>/delete', methods=['DELETE'])
 def delete_chat(chat_id):
