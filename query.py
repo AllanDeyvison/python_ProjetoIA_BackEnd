@@ -90,19 +90,19 @@ LLM_MODEL = os.getenv('LLM_MODEL')
 # print(f"Assistente: {resposta}")
 
 
-def query_old(query):
-    response = ollama.chat(model='qwen2', messages=[
-        {
-            'role' : 'system',
-            'content': 'Você é um assistente especializado em resolver problemas matemáticos. Responda com o passo a passo de forma clara e concisa. Responda sempre em Português Brasileiro',
-        },
-        {
-            'role':'user',
-            'content': query,  
-        },
-    ])
+# def query_old(query):
+#     response = ollama.chat(model='qwen2', messages=[
+#         {
+#             'role' : 'system',
+#             'content': 'Você é um assistente especializado em resolver problemas matemáticos. Responda com o passo a passo de forma clara e concisa. Responda sempre em Português Brasileiro',
+#         },
+#         {
+#             'role':'user',
+#             'content': query,  
+#         },
+#     ])
 
-    return response['message']['content']
+#     return response['message']['content']
 
 
 
@@ -120,7 +120,7 @@ def query_new_chat(user_id: str, query: str) -> str:
         response = ollama.chat(model=LLM_MODEL, messages=[
             {
                 "role": "system",
-                'content': 'Você é um assistente especializado em resolver problemas matemáticos. Responda com o passo a passo de forma clara e concisa. Responda sempre em Português Brasileiro',
+                'content': 'Você é um assistente especializado em resolver problemas matemáticos. Responda com o passo a passo de forma clara e concisa. Responda sempre em Português Brasileiro e formate sempre em Markdown.',
             },
             {"role": "user", "content": query}
         ])
@@ -130,7 +130,7 @@ def query_new_chat(user_id: str, query: str) -> str:
         print(f"Erro ao consultar o modelo: {e}")
         raise
 
-        # Cria nova conversa
+     # Cria nova conversa
     chat_id = create_chat(user_id, title = f'{query.capitalize()[:30]}...')
 
     # Salva ambas as mensagens
