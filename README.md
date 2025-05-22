@@ -9,6 +9,7 @@
 - unstructured
 - "unstructured[all-docs]"
 - ollama
+- pymongo
 
 
 ```bash
@@ -23,7 +24,7 @@ $ source venv/bin/activate
 
 Para a query:
 ```bash
-pip install Flask Flask-Cors ollama
+pip install Flask Flask-Cors ollama pymongo
 ```
 
 Para o embed:
