@@ -31,10 +31,12 @@ api = Api(app, version='1.0', title='Math Assistant API',
 chat_ns = Namespace('chats', description='Operações de chat')
 
 new_chat_model = chat_ns.model('NewChat', {
+    'model': fields.String(required=False, description='Modelo LLM a ser usado'),
     'message': fields.String(required=True, description='Mensagem inicial do usuário')
 })
 
 continue_chat_model = chat_ns.model('ContinueChat', {
+    'model': fields.String(required=False, description='Modelo LLM a ser usado'),
     'message': fields.String(required=True, description='Mensagem para continuar o chat')
 })
 
@@ -47,7 +49,9 @@ class NewChat(Resource):
         if not user_id:
             return {"error": "Parâmetro 'user_id' é obrigatório"}, 400
         data = request.get_json()
-        response = new_chat_controller(user_id, data.get('message'))
+        model = data.get('model')
+        message = data.get('message')
+        response = new_chat_controller(user_id, model, message)
         if response:
             return {"answer": response}, 200
         else:
@@ -62,8 +66,9 @@ class ResumeChat(Resource):
         if not user_id:
             return {"error": "Parâmetro 'user_id' é obrigatório"}, 400
         data = request.get_json()
+        model = data.get('model')
         message = data.get('message')
-        response = continue_chat_controller(user_id, chat_id, message)
+        response = continue_chat_controller(user_id, chat_id, model, message)
         if response:
             return {"answer": response}, 200
         else:

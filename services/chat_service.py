@@ -28,8 +28,10 @@ def add_messages(user_id, chat_id, query, model_response):
     update_chat(user_id, chat_id, "user", query)
     update_chat(user_id, chat_id, "assistant", model_response)
 
-def query_new_chat(user_id: str, query: str) -> str:
+def query_new_chat(user_id: str, model:str, query: str) -> str:
     try:
+        if model:
+            LLM_MODEL = model
         response = ollama.chat(model=LLM_MODEL, messages=[
             {
                 "role": "system",
@@ -48,7 +50,7 @@ def query_new_chat(user_id: str, query: str) -> str:
         "resposta": model_response
     }
 
-def continue_chat(user_id: str, chat_id: str, query: str) -> str:
+def continue_chat(user_id: str, chat_id: str, model:str, query: str) -> str:
     chat = get_chat_messages(user_id, chat_id)
     messages = [{
         "role": "system", 
