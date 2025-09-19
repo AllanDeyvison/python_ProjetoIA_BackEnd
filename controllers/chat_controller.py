@@ -6,9 +6,6 @@ from services.chat_service import (
     delete_conversation
 )
 
-def query_old_controller(message):
-    return query_old(message)
-
 def new_chat_controller(user_id, model, message):
     return query_new_chat(user_id, model, message)
 
