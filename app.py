@@ -17,7 +17,7 @@ TEMP_FOLDER = os.getenv('TEMP_FOLDER')
 os.makedirs(TEMP_FOLDER, exist_ok=True)
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, expose_headers=["X-Chat-ID"])
         
 @app.route('/chats/new', methods=['POST'])
 def route_new_chat():

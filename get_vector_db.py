@@ -1,1 +1,0 @@
-# Arquivo removido. Lógica migrada para models/vector_db.py.
