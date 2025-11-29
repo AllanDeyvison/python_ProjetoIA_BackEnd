@@ -1,6 +1,6 @@
 # AprovIA — Backend (API)
 
-API backend em Flask para um assistente de Matemática/Inglês com chat em streaming, persistência local/MongoDB e embeddings de PDFs.
+API backend em Flask para um assistente de Matemática/Inglês com chat em streaming, persistência local/MongoDB.
 
 ## Sumário
 - Visão geral
@@ -12,9 +12,7 @@ API backend em Flask para um assistente de Matemática/Inglês com chat em strea
 - Swagger / documentação OpenAPI
 - Comportamento de streaming
 - Persistência: MongoDB e fallback local
-- Embeddings (PDF -> Chroma)
 - Troubleshooting
-- Próximos passos
 
 ## Estrutura (resumida)
 - app.py — ponto de entrada e rotas
@@ -33,7 +31,6 @@ API backend em Flask para um assistente de Matemática/Inglês com chat em strea
 - langchain-text-splitters
 - langchain-community
 - dotenv
-- chromadb
 - unstructured
 - ollama
 - pymongo
@@ -66,10 +63,8 @@ pip install Flask Flask-CORS flasgger ollama pymongo python-dotenv
 ## Configuração (.env)
 Copie o arquivo de exemplo (sampleenv.txt) para `.env` e preencha:
 - TEMP_FOLDER — pasta temporária (ex.: ./_temp)
-- CHROMA_PATH — diretório do ChromaDB
 - COLLECTION_NAME — coleção Chroma
 - LLM_MODEL — modelo Ollama padrão
-- TEXT_EMBEDDING_MODEL — modelo de embedding
 - URL_CONNECTION_MONGODB — string de conexão (ou deixar vazio para fallback local)
 - DATABASE_NAME, ASSISTANT_COLLECTION
 
@@ -108,9 +103,4 @@ curl "http://127.0.0.1:5000/chats?user_id=test"
 Recuperar chat:
 ```bash
 curl "http://127.0.0.1:5000/chats/{chat_id}?user_id=test"
-```
-
-Enviar PDF para embed (exemplo de uso da rota embed):
-```bash
-curl -F "file=@arquivo.pdf" "http://127.0.0.1:5000/embed?user_id=test"
 ```
