@@ -16,7 +16,6 @@ english_context = "You are an assistant specialized in helping with english stud
 def generate_streamed_response(messages, model):
     try:
         stream = ollama.chat(model=model, messages=messages, stream=True)
-        
         # O gerador vai 'yield' cada pedaço da resposta à medida que chega
         for chunk in stream: 
             # O 'chunk' é um dicionário, o texto está em ['content']

@@ -13,9 +13,9 @@ swagger_template = {
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "/",
+    "host": "http://4.206.202.49.nip.io",
     "basePath": "/",
-    "schemes": ["http", "https"],
+    "schemes": ["https"],
     "consumes": ["application/json"],
     "produces": ["application/json", "text/plain"],
     "tags": [
